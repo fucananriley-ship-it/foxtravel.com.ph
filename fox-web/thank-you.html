@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Thank You - Fox Travel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header-transparent" style="background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15); border-bottom: 1px solid rgba(255, 255, 255, 0.1); position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;">
+        <div class="container nav">
+            <a href="index.html" class="logo">
+                <img src="images/logofoxtravel2.png" alt="Fox Travel" class="transparent-logo">
+            </a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="index.html#services">Services</a>
+                <a href="index.html#fleet">Our Fleet</a>
+                <a href="index.html#contact">Contact</a>
+                <a href="about.html">About</a>
+                <a href="index.html#quote" class="booking-btn">Request Quote</a>
+            </nav>
+        </div>
+    </header>
+
+    <main style="padding: 120px 0; background: #f8f8f8; min-height: 100vh; display: flex; align-items: center;">
+        <div class="container" style="max-width: 800px; margin: 0 auto; padding: 0 20px;">
+            <div class="content-wrapper" style="background: white; padding: 60px 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center;">
+                <div style="width: 80px; height: 80px; background: rgba(255, 107, 0, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 30px;">
+                    <i class="fas fa-check" style="font-size: 2.5em; color: #ff6b00;"></i>
+                </div>
+                <h1 style="font-size: 2.5em; color: #333; margin-bottom: 20px; font-weight: 600;">Thank You!</h1>
+                <p style="color: #666; line-height: 1.8; margin-bottom: 30px; font-size: 1.1em;">We've received your quote request and will get back to you shortly. Our team is reviewing your details and will contact you within 24 hours.</p>
+                <div style="margin-top: 40px;">
+                    <a href="index.html" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 25px; background: #ff6b00; color: white; text-decoration: none; border-radius: 12px; font-size: 0.9em; transition: all 0.3s ease; box-shadow: 0 8px 15px rgba(255, 107, 0, 0.1);" onmouseover="this.style.background='#ff7a1a'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 12px 25px rgba(255, 107, 0, 0.2)'" onmouseout="this.style.background='#ff6b00'; this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 15px rgba(255, 107, 0, 0.1)'">
+                        <i class="fas fa-home"></i>
+                        Return to Homepage
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer style="background: #333; color: white; padding: 40px 0;">
+        <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <p style="margin: 0;">&copy; 2025 Fox Travel Transport Services. All rights reserved.</p>
+                <div style="display: flex; gap: 20px;">
+                    <a href="terms.html" style="color: white; text-decoration: none;">Terms & Conditions</a>
+                    <a href="privacy.html" style="color: white; text-decoration: none;">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+</html> 
