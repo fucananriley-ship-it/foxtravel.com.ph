@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>About Us - Fox Travel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        .header-transparent {
+            font-family: 'Poppins', sans-serif;
+        }
+        .header-transparent nav a {
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            position: relative;
+            outline: none;
+        }
+        .header-transparent nav a:focus {
+            outline: none;
+        }
+        .header-transparent nav a:not(.booking-btn):after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            background-color: #fff;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+            opacity: 0;
+        }
+        .header-transparent nav a:not(.booking-btn):hover:after,
+        .header-transparent nav a:not(.booking-btn).active:after {
+            width: 100%;
+            opacity: 1;
+        }
+        .header-transparent .booking-btn {
+            font-weight: 600;
+            font-size: 1.1em;
+            padding: 15px 30px;
+            background: #ff6b00;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.2);
+            cursor: pointer;
+        }
+        .header-transparent .booking-btn:hover,
+        .header-transparent .booking-btn:focus {
+            background: #ff7a1a;
+            color: white;
+            outline: none;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 0, 0.3);
+        }
+        /* Remove focus outline for all interactive elements */
+        a:focus, button:focus {
+            outline: none;
+        }
+        .hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        .hero p {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            letter-spacing: 0.2px;
+        }
+        .cta-content {
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+        /* Global Responsive Container */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        /* Header and Navigation Styles */
+        .header-transparent {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        /* Desktop header bar styling */
+        @media (min-width: 769px) {
+            .header-transparent {
+                background: rgba(0, 0, 0, 0.45) !important;
+                backdrop-filter: blur(8px) !important;
+                -webkit-backdrop-filter: blur(8px) !important;
+                box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1) !important;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+            }
+        }
+
+        .header-transparent .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .header-transparent .logo {
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .header-transparent .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .header-transparent nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .menu-overlay.active {
+            display: block;
+        }
+
+        /* Responsive Typography */
+        @media (max-width: 768px) {
+            h1 { font-size: 2em !important; }
+            h2 { font-size: 1.8em !important; }
+            h3 { font-size: 1.4em !important; }
+            p { font-size: 1em !important; }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8em !important; }
+            h2 { font-size: 1.6em !important; }
+            h3 { font-size: 1.2em !important; }
+            p { font-size: 0.9em !important; }
+        }
+
+        /* Responsive Header */
+        @media (max-width: 768px) {
+            .header-transparent {
+                padding: 10px 0 !important;
+            }
+            .header-transparent .logo img {
+                height: 30px !important;
+            }
+            .header-transparent nav {
+                padding: 60px 20px !important;
+            }
+            .header-transparent nav a {
+                font-size: 1.2em !important;
+                margin: 10px 0 !important;
+            }
+            .booking-btn {
+                width: 100% !important;
+                text-align: center !important;
+                margin: 20px 0 !important;
+            }
+        }
+
+        /* Responsive Hero Section */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 100px 0 !important;
+            }
+            .hero-content {
+                padding: 0 20px !important;
+            }
+            .story-content {
+                padding: 0 15px !important;
+            }
+        }
+
+        /* Responsive Values Section */
+        @media (max-width: 992px) {
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 20px !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .values-grid {
+                grid-template-columns: 1fr !important;
+            }
+            .value-card {
+                padding: 30px !important;
+            }
+        }
+
+        /* Responsive Team Section */
+        @media (max-width: 768px) {
+            .team-content {
+                padding: 0 15px !important;
+            }
+            .team-highlights {
+                grid-template-columns: 1fr !important;
+                gap: 15px !important;
+            }
+        }
+
+        /* Responsive Clients Section */
+        @media (max-width: 992px) {
+            .client-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 20px !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .client-grid {
+                grid-template-columns: 1fr !important;
+            }
+            .client-item {
+                padding: 15px !important;
+            }
+            .client-item i {
+                font-size: 2em !important;
+            }
+        }
+
+        /* Responsive CTA Section */
+        @media (max-width: 768px) {
+            .cta-section {
+                padding: 60px 0 !important;
+            }
+            .cta-content {
+                padding: 0 15px !important;
+            }
+            .cta-btn {
+                width: 100% !important;
+                text-align: center !important;
+                display: block !important;
+                margin: 0 15px !important;
+            }
+        }
+
+        /* Responsive Footer */
+        @media (max-width: 992px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 30px !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-grid {
+                grid-template-columns: 1fr !important;
+            }
+            .footer-section {
+                text-align: center !important;
+            }
+            .social-links {
+                justify-content: center !important;
+            }
+        }
+
+        /* Touch-friendly Buttons */
+        @media (max-width: 768px) {
+            /* All buttons */
+            button, 
+            .cta-btn,
+            .primary-btn,
+            .secondary-btn,
+            .booking-btn,
+            .quote-btn,
+            .submit-btn,
+            .newsletter-form button {
+                min-height: 44px !important;
+                min-width: 44px !important;
+                touch-action: manipulation !important;
+                -webkit-tap-highlight-color: transparent !important;
+                -webkit-touch-callout: none !important;
+                -webkit-user-select: none !important;
+                -khtml-user-select: none !important;
+                -moz-user-select: none !important;
+                -ms-user-select: none !important;
+                user-select: none !important;
+                cursor: pointer !important;
+            }
+
+            /* Navigation links */
+            nav a {
+                min-height: 44px !important;
+                min-width: 44px !important;
+                touch-action: manipulation !important;
+                -webkit-tap-highlight-color: transparent !important;
+                -webkit-touch-callout: none !important;
+                -webkit-user-select: none !important;
+                -khtml-user-select: none !important;
+                -moz-user-select: none !important;
+                -ms-user-select: none !important;
+                user-select: none !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+
+            /* Mobile menu button */
+            .mobile-menu-btn {
+                min-height: 44px !important;
+                min-width: 44px !important;
+                touch-action: manipulation !important;
+                -webkit-tap-highlight-color: transparent !important;
+                -webkit-touch-callout: none !important;
+                -webkit-user-select: none !important;
+                -khtml-user-select: none !important;
+                -moz-user-select: none !important;
+                -ms-user-select: none !important;
+                user-select: none !important;
+            }
+
+            /* Form inputs */
+            input, 
+            select, 
+            textarea {
+                font-size: 16px !important; /* Prevents iOS zoom */
+                min-height: 44px !important;
+                touch-action: manipulation !important;
+                -webkit-tap-highlight-color: transparent !important;
+            }
+
+            /* Links */
+            a {
+                touch-action: manipulation !important;
+                -webkit-tap-highlight-color: transparent !important;
+                -webkit-touch-callout: none !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Smaller touch targets for very small screens */
+            button, 
+            .cta-btn,
+            .primary-btn,
+            .secondary-btn,
+            .booking-btn,
+            .quote-btn,
+            .submit-btn,
+            .newsletter-form button {
+                min-height: 40px !important;
+                min-width: 40px !important;
+            }
+
+            nav a {
+                min-height: 40px !important;
+                min-width: 40px !important;
+            }
+
+            .mobile-menu-btn {
+                min-height: 40px !important;
+                min-width: 40px !important;
+            }
+
+            input, 
+            select, 
+            textarea {
+                min-height: 40px !important;
+            }
+        }
+
+        /* Improved Form Elements for Mobile */
+        @media (max-width: 768px) {
+            input, 
+            select, 
+            textarea {
+                font-size: 16px !important; /* Prevents iOS zoom */
+                padding: 12px !important;
+            }
+        }
+
+        /* Responsive Spacing */
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0 !important;
+            }
+            .container {
+                padding: 0 15px !important;
+            }
+        }
+
+        /* Improved Mobile Performance */
+        @media (max-width: 768px) {
+            .hero,
+            .cta-section {
+                background-attachment: scroll !important;
+            }
+        }
+
+        /* Mobile menu button styling */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: #fff;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        /* Mobile Menu Button - Override any transformations */
+        .mobile-menu-btn span {
+            transform: none !important;
+            transition: none !important;
+        }
+        
+        .mobile-menu-btn.active span {
+            transform: none !important;
+            transition: none !important;
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0.5;
+        }
+
+        @media (max-width: 992px) {
+            .header-transparent nav {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.95);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 25px;
+                z-index: 1000;
+                padding: 20px;
+            }
+
+            .header-transparent nav.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-link {
+                font-size: 1.1em !important;
+                padding: 10px 20px;
+                width: 100%;
+                text-align: center;
+                border-radius: 8px;
+                transition: all 0.3s ease !important;
+            }
+
+            .nav-link:hover {
+                background: rgba(255, 107, 0, 0.1);
+            }
+
+            .booking-btn {
+                margin: 10px 0 0 0 !important;
+                padding: 15px 30px !important;
+                width: 100%;
+                text-align: center;
+            }
+
+            body.menu-open {
+                overflow: hidden;
+            }
+        }
+    </style>
+</head>
+<body class="about-page">
+    <header class="header-transparent" style="padding: 12px 0; background: rgba(0, 0, 0, 0.20); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);">
+        <div class="nav">
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <a href="index.html" class="logo">
+                <img src="images/logofoxtravel2.png" alt="Fox Travel Logo" class="transparent-logo">
+            </a>
+            <nav>
+                <a href="index.html" style="color: white; text-decoration: none; font-size: 0.95em; font-weight: 500; transition: all 0.3s ease; letter-spacing: 0.3px;">Home</a>
+                <a href="index.html#services" style="color: white; text-decoration: none; font-size: 0.95em; font-weight: 500; transition: all 0.3s ease; letter-spacing: 0.3px;">Services</a>
+                <a href="index.html#fleet" style="color: white; text-decoration: none; font-size: 0.95em; font-weight: 500; transition: all 0.3s ease; letter-spacing: 0.3px;">Our Fleet</a>
+                <a href="index.html#contact" style="color: white; text-decoration: none; font-size: 0.95em; font-weight: 500; transition: all 0.3s ease; letter-spacing: 0.3px;">Contact</a>
+                <a href="./about.html" class="active" style="color: white; text-decoration: none; font-size: 0.95em; font-weight: 500; transition: all 0.3s ease; letter-spacing: 0.3px;">About</a>
+                <a href="index.html#quote" class="booking-btn" style="margin-left: 15px;">Request Quote</a>
+            </nav>
+            <div class="menu-overlay"></div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="hero" aria-labelledby="main-header-title" style="position: relative; padding: 120px 0; background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('images/foxfleet2.JPG') center/cover no-repeat; background-attachment: fixed;">
+            <div class="container" style="max-width: 900px; margin: 0 auto; padding: 0 20px;">
+                <div class="story-content" data-aos="fade-up" style="text-align: center;">
+                    <h2 style="font-size: 2.5em; color: white; margin-bottom: 40px; font-weight: 600; letter-spacing: -0.5px;">Our Story</h2>
+                    <p style="font-size: 1.2em; color: white; line-height: 1.6; margin-bottom: 20px;">Fox Travel Transport Services was founded in 2010 with the goal of redefining transportation in Metro Manila. What began as a small fleet of premium vehicles has grown into a trusted, full-service transport provider for individuals and businesses alike.</p>
+                    <p style="font-size: 1.2em; color: white; line-height: 1.6;">With a strong focus on quality, reliability, and customer care, we've built a reputation as one of the industry's most dependable names. For us, transportation goes beyond logistics — it's about delivering a smooth, safe, and exceptional experience every time.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-values" id="values" style="padding: 80px 0; background: #f8f8f8;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+                <div class="values-grid" data-aos="fade-up" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                    <div class="value-card" style="background: white; padding: 40px; border-radius: 16px; text-align: center; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);">
+                        <div class="value-icon" style="font-size: 2.5em; color: #ff6b00; margin-bottom: 20px;">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 style="font-size: 1.5em; color: #333; margin-bottom: 15px; font-weight: 600;">Safety First</h3>
+                        <p style="font-size: 1em; color: #666; line-height: 1.6; font-weight: 300;">Your safety is our top priority. Our vehicles undergo regular maintenance, and our drivers are thoroughly trained.</p>
+                    </div>
+                    <div class="value-card" style="background: white; padding: 40px; border-radius: 16px; text-align: center; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);">
+                        <div class="value-icon" style="font-size: 2.5em; color: #ff6b00; margin-bottom: 20px;">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3 style="font-size: 1.5em; color: #333; margin-bottom: 15px; font-weight: 600;">Reliability</h3>
+                        <p style="font-size: 1em; color: #666; line-height: 1.6; font-weight: 300;">We understand the importance of punctuality and ensure our services are always on time.</p>
+                    </div>
+                    <div class="value-card" style="background: white; padding: 40px; border-radius: 16px; text-align: center; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);">
+                        <div class="value-icon" style="font-size: 2.5em; color: #ff6b00; margin-bottom: 20px;">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3 style="font-size: 1.5em; color: #333; margin-bottom: 15px; font-weight: 600;">Excellence</h3>
+                        <p style="font-size: 1em; color: #666; line-height: 1.6; font-weight: 300;">We strive for excellence in every aspect of our service, from vehicle quality to customer support.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-clients" id="clients" style="padding: 80px 0; background: white;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+                <div class="clients-content" data-aos="fade-up" style="text-align: center; margin-bottom: 50px;">
+                    <h2 style="font-size: 2.5em; color: #333; margin-bottom: 20px; font-weight: 600;">Our Valued Clients</h2>
+                    <p style="font-size: 1.1em; color: #666; line-height: 1.8; margin-bottom: 40px; font-weight: 300;">We are proud to serve and partner with leading organizations across various industries, providing them with reliable and premium transportation solutions.</p>
+                    <div class="client-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; align-items: center;">
+                        <div class="client-item" style="padding: 30px; background: #f8f8f8; border-radius: 12px; display: flex; align-items: center; justify-content: center; height: 160px; width: 100%; transition: all 0.3s ease;">
+                            <img src="images/client1.jpg" alt="Client 1" style="max-width: 150px; max-height: 100px; object-fit: contain;">
+                        </div>
+                        <div class="client-item" style="padding: 30px; background: #f8f8f8; border-radius: 12px; display: flex; align-items: center; justify-content: center; height: 160px; width: 100%; transition: all 0.3s ease;">
+                            <img src="images/BW_logo.png" alt="BW Logo" style="max-width: 150px; max-height: 100px; object-fit: contain;">
+                        </div>
+                        <div class="client-item" style="padding: 30px; background: #f8f8f8; border-radius: 12px; display: flex; align-items: center; justify-content: center; height: 160px; width: 100%; transition: all 0.3s ease;">
+                            <img src="images/clientlogo3.png" alt="Client 3" style="max-width: 150px; max-height: 100px; object-fit: contain;">
+                        </div>
+                        <div class="client-item" style="padding: 30px; background: #f8f8f8; border-radius: 12px; display: flex; align-items: center; justify-content: center; height: 160px; width: 100%; transition: all 0.3s ease;">
+                            <img src="images/clientlogo4.png" alt="Client 4" style="max-width: 150px; max-height: 100px; object-fit: contain;">
+                        </div>
+                        <div class="client-item" style="padding: 30px; background: #f8f8f8; border-radius: 12px; display: flex; align-items: center; justify-content: center; height: 160px; width: 100%; transition: all 0.3s ease;">
+                            <img src="images/clientlogo5.jpg" alt="Client 5" style="max-width: 150px; max-height: 100px; object-fit: contain;">
+                        </div>
+                        <div class="client-item" style="padding: 30px; background: #f8f8f8; border-radius: 12px; display: flex; align-items: center; justify-content: center; height: 160px; width: 100%; transition: all 0.3s ease;">
+                            <img src="images/clientlogo6.png" alt="Client 6" style="max-width: 150px; max-height: 100px; object-fit: contain;">
+                        </div>
+                        <div class="client-item" style="padding: 30px; background: #f8f8f8; border-radius: 12px; display: flex; align-items: center; justify-content: center; height: 160px; width: 100%; transition: all 0.3s ease;">
+                            <img src="images/clientlogo7.png" alt="Client 7" style="max-width: 150px; max-height: 100px; object-fit: contain;">
+                        </div>
+                        <div class="client-item" style="padding: 30px; background: #f8f8f8; border-radius: 12px; display: flex; align-items: center; justify-content: center; height: 160px; width: 100%; transition: all 0.3s ease;">
+                            <img src="images/clientlogo8.jpg" alt="Client 8" style="max-width: 150px; max-height: 100px; object-fit: contain;">
+                        </div>
+                        <div class="client-item" style="padding: 30px; background: #f8f8f8; border-radius: 12px; display: flex; align-items: center; justify-content: center; height: 160px; width: 100%; transition: all 0.3s ease;">
+                            <img src="images/clientlogo9.png" alt="Client 9" style="max-width: 150px; max-height: 100px; object-fit: contain;">
+                        </div>
+                        <div class="client-item" style="padding: 30px; background: #f8f8f8; border-radius: 12px; display: flex; align-items: center; justify-content: center; height: 160px; width: 100%; transition: all 0.3s ease;">
+                            <img src="images/clientlogo10.png" alt="Client 10" style="max-width: 150px; max-height: 100px; object-fit: contain;">
+                        </div>
+                        <div class="client-item" style="padding: 30px; background: #f8f8f8; border-radius: 12px; display: flex; align-items: center; justify-content: center; height: 160px; width: 100%; transition: all 0.3s ease;">
+                            <img src="images/clientlogo16.jpg" alt="Client 16" style="max-width: 150px; max-height: 100px; object-fit: contain;">
+                        </div>
+                        <div class="client-item" style="padding: 30px; background: #f8f8f8; border-radius: 12px; display: flex; align-items: center; justify-content: center; height: 160px; width: 100%; transition: all 0.3s ease;">
+                            <img src="images/clientlogo12.png" alt="Client 12" style="max-width: 150px; max-height: 100px; object-fit: contain;">
+                        </div>
+                        <div class="client-item" style="padding: 30px; background: #f8f8f8; border-radius: 12px; display: flex; align-items: center; justify-content: center; height: 160px; width: 100%; transition: all 0.3s ease;">
+                            <img src="images/clientlogo13.png" alt="Client 13" style="max-width: 150px; max-height: 100px; object-fit: contain;">
+                        </div>
+                        <div class="client-item" style="padding: 30px; background: #f8f8f8; border-radius: 12px; display: flex; align-items: center; justify-content: center; height: 160px; width: 100%; transition: all 0.3s ease;">
+                            <img src="images/clientlogo17.png" alt="Client 17" style="max-width: 150px; max-height: 100px; object-fit: contain;">
+                        </div>
+                        <div class="client-item" style="padding: 30px; background: #f8f8f8; border-radius: 12px; display: flex; align-items: center; justify-content: center; height: 160px; width: 100%; transition: all 0.3s ease;">
+                            <img src="images/clientlogo15.png" alt="Client 15" style="max-width: 150px; max-height: 100px; object-fit: contain;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-team" id="team" style="padding: 80px 0; background: white;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+                <div class="team-content" data-aos="fade-up" style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <h2 style="font-size: 2.5em; color: #333; margin-bottom: 30px; font-weight: 600;">Our Professional Team</h2>
+                    <p style="font-size: 1.1em; color: #666; line-height: 1.8; margin-bottom: 40px; font-weight: 300;">Our team consists of experienced professionals who are passionate about delivering exceptional service. From our skilled drivers to our dedicated customer support staff, every member of the Fox Travel family is committed to ensuring your journey is comfortable and worry-free.</p>
+                    <ul class="team-highlights" style="list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: left;">
+                        <li style="display: flex; align-items: center; gap: 10px; font-size: 1em; color: #666;"><i class="fas fa-check" style="color: #ff6b00;"></i> Professional, licensed drivers</li>
+                        <li style="display: flex; align-items: center; gap: 10px; font-size: 1em; color: #666;"><i class="fas fa-check" style="color: #ff6b00;"></i> 24/7 customer support</li>
+                        <li style="display: flex; align-items: center; gap: 10px; font-size: 1em; color: #666;"><i class="fas fa-check" style="color: #ff6b00;"></i> Trained maintenance staff</li>
+                        <li style="display: flex; align-items: center; gap: 10px; font-size: 1em; color: #666;"><i class="fas fa-check" style="color: #ff6b00;"></i> Dedicated booking specialists</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section" id="cta" style="padding: 100px 0; background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('images/boss.JPG') left center/cover no-repeat fixed; background-position: 0% center;">
+            <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+                <div class="cta-content" data-aos="fade-up" style="text-align: center; max-width: 800px; margin: 0 auto; position: relative; z-index: 2;">
+                    <h2 style="font-size: 2.5em; color: white; margin-bottom: 20px; font-weight: 600;">Ready to Experience Premium Transportation?</h2>
+                    <p style="font-size: 1.1em; color: white; margin-bottom: 30px; font-weight: 300; line-height: 1.6;">Let us take care of your transportation needs with our premium fleet and professional service.</p>
+                    <a href="index.html" class="cta-btn" style="display: inline-block; padding: 15px 35px; background: #ff6b00; color: white; text-decoration: none; border-radius: 30px; font-weight: 500; font-size: 1.1em; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(255, 107, 0, 0.2);" onmouseover="this.style.background='#ff7a1a'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(255, 107, 0, 0.3)'" onmouseout="this.style.background='#ff6b00'; this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(255, 107, 0, 0.2)'">Get Started Today</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="background: #ededed; padding: 60px 0 20px;">
+        <div class="container">
+            <div class="footer-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 40px;">
+                <div class="footer-section">
+                    <div class="logo" style="display: flex; justify-content: flex-start; align-items: center; margin-bottom: 20px;">
+                        <img src="images/logofoxtravel2.png" alt="Fox Travel" style="height: 40px; width: auto; object-fit: contain;">
+                    </div>
+                    <p style="color: #666; font-size: 0.95em; line-height: 1.6; margin-bottom: 20px;">Your trusted partner for premium transportation services.</p>
+                    <div class="social-links" style="display: flex; gap: 15px; align-items: center;">
+                        <a href="https://www.facebook.com/foxtravel.ph" target="_blank" style="color: #666; font-size: 1.2em; transition: all 0.3s ease; background: rgba(255, 107, 0, 0.1); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%;" onmouseover="this.style.background='#ff6b00'; this.style.color='white'" onmouseout="this.style.background='rgba(255, 107, 0, 0.1)'; this.style.color='#666'"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/foxtravelph/" target="_blank" style="color: #666; font-size: 1.2em; transition: all 0.3s ease; background: rgba(255, 107, 0, 0.1); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%;" onmouseover="this.style.background='#ff6b00'; this.style.color='white'" onmouseout="this.style.background='rgba(255, 107, 0, 0.1)'; this.style.color='#666'"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3 style="color: #333; font-size: 1.2em; margin-bottom: 20px; font-weight: 600;">Quick Links</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 12px;"><a href="./about.html" style="color: #666; text-decoration: none; transition: color 0.3s ease; display: block;" onmouseover="this.style.color='#ff6b00'" onmouseout="this.style.color='#666'">About Us</a></li>
+                        <li style="margin-bottom: 12px;"><a href="index.html#services" style="color: #666; text-decoration: none; transition: color 0.3s ease; display: block;" onmouseover="this.style.color='#ff6b00'" onmouseout="this.style.color='#666'">Services</a></li>
+                        <li style="margin-bottom: 12px;"><a href="index.html#fleet" style="color: #666; text-decoration: none; transition: color 0.3s ease; display: block;" onmouseover="this.style.color='#ff6b00'" onmouseout="this.style.color='#666'">Fleet</a></li>
+                        <li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@foxtravel.com" target="_blank" style="color: #666; text-decoration: none; transition: color 0.3s ease; display: block;" onmouseover="this.style.color='#ff6b00'" onmouseout="this.style.color='#666'">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 style="color: #333; font-size: 1.2em; margin-bottom: 20px; font-weight: 600;">Services</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 12px;"><a href="index.html#services" onclick="showService('airport')" style="color: #666; text-decoration: none; transition: color 0.3s ease; display: block;" onmouseover="this.style.color='#ff6b00'" onmouseout="this.style.color='#666'">Airport Transfers</a></li>
+                        <li style="margin-bottom: 12px;"><a href="index.html#services" onclick="showService('executive')" style="color: #666; text-decoration: none; transition: color 0.3s ease; display: block;" onmouseover="this.style.color='#ff6b00'" onmouseout="this.style.color='#666'">Executive Transfer</a></li>
+                        <li style="margin-bottom: 12px;"><a href="index.html#services" onclick="showService('holiday')" style="color: #666; text-decoration: none; transition: color 0.3s ease; display: block;" onmouseover="this.style.color='#ff6b00'" onmouseout="this.style.color='#666'">Holiday Getaway</a></li>
+                        <li><a href="index.html#services" onclick="showService('corporate')" style="color: #666; text-decoration: none; transition: color 0.3s ease; display: block;" onmouseover="this.style.color='#ff6b00'" onmouseout="this.style.color='#666'">Corporate Shuttle</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 style="color: #333; font-size: 1.2em; margin-bottom: 20px; font-weight: 600;">Newsletter</h3>
+                    <p style="color: #666; margin-bottom: 15px;">Subscribe for updates and special offers</p>
+                    <form class="newsletter-form" style="display: flex; gap: 10px;">
+                        <input type="email" placeholder="Enter your email" style="flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.9em;">
+                        <button type="submit" style="background: #ff6b00; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.background='#ff7a1a'" onmouseout="this.style.background='#ff6b00'">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom" style="border-top: 1px solid #ddd; padding-top: 20px; text-align: center;">
+                <p style="color: #666; font-size: 0.9em; margin: 0;">&copy; 2025 Fox Travel Transport Services. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Header transparency control
+        function updateHeaderStyle() {
+            const scrollPosition = window.scrollY;
+            const header = document.querySelector('.header-transparent');
+            if (scrollPosition > 50) {
+                header.style.background = 'rgba(0, 0, 0, 0.45)';
+                header.style.backdropFilter = 'blur(8px)';
+                header.style.webkitBackdropFilter = 'blur(8px)';
+            } else {
+                header.style.background = 'rgba(0, 0, 0, 0.20)';
+                header.style.backdropFilter = 'blur(8px)';
+                header.style.webkitBackdropFilter = 'blur(8px)';
+            }
+        }
+
+        // Initialize header state
+        updateHeaderStyle();
+        
+        // Update on scroll
+        window.addEventListener('scroll', updateHeaderStyle);
+        window.addEventListener('resize', updateHeaderStyle);
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('nav');
+        const menuOverlay = document.querySelector('.menu-overlay');
+        const navLinks = document.querySelectorAll('nav a');
+        const header = document.querySelector('.header-transparent');
+        let lastScroll = 0;
+
+        function toggleMenu(show) {
+            nav.classList.toggle('active', show);
+            mobileMenuBtn.classList.toggle('active', show);
+            menuOverlay.classList.toggle('active', show);
+            document.body.style.overflow = show ? 'hidden' : '';
+        }
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const shouldShow = !nav.classList.contains('active');
+            toggleMenu(shouldShow);
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                // Always close menu when any link is clicked
+                toggleMenu(false);
+            });
+        });
+
+        menuOverlay.addEventListener('click', () => {
+            toggleMenu(false);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && nav.classList.contains('active')) {
+                toggleMenu(false);
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768 && nav.classList.contains('active')) {
+                toggleMenu(false);
+            }
+        });
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll <= 0) {
+                header.classList.remove('scrolled');
+            } else {
+                header.classList.add('scrolled');
+            }
+            lastScroll = currentScroll;
+        });
+    </script>
+</body>
+</html>
